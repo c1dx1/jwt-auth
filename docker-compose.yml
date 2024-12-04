@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres1
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: employee_db
+    ports:
+      - "5432:5432"
+
+  jwt-auth:
+    build:
+      dockerfile: Dockerfile
+    container_name: jwt-auth
+    restart: always
+    ports:
+      - "8080:8080"
+    command: ["./main"]
